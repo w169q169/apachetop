@@ -120,6 +120,12 @@ struct input {
 
 #include "filters.h"
 
+#include "ohtbl.h"
+
+#include "map.h"
+
+#include "query_filter.h"
+
 struct config {
 	#define SORT_REQCOUNT 1
 	#define SORT_REQPERSEC 2
@@ -174,6 +180,7 @@ struct config {
 
 	/* url munging */
 	bool keep_querystring;
+
 	bool lowercase_urls;
 	unsigned short keep_segments;
 	bool preserve_ref_protocol;
@@ -221,20 +228,17 @@ struct gstat {
 };
 
 //#include "opt.h"
-#include "ohtbl.h"
 
 #if HAVE_ADNS_H
 # include "resolver.h"
 #endif
 
-#include "map.h"
 #include "circle.h"
 #include "hits_circle.h"
 #include "timed_circle.h"
 #include "display.h"
 #include "log.h"
 #include "queue.h"
-
 
 #define JAN 281
 #define FEB 269

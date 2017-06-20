@@ -11,6 +11,8 @@ extern map *um, /* urlmap */
            *rm, /* referrermap */
            *fm; /* filemap */
 
+extern queryFilter qf;
+
 extern time_t now;
 extern config cf;
 
@@ -281,7 +283,25 @@ int LogParser::mungeURL(char **url, int *length) /* {{{ */
 				bufcp = workptr+1;
 			}
 		}
-	}
+	}else {
+        //filter url        
+        workptr = *url;
+        
+        std::string newUrl = qf.getUrl(*url);
+        const char *x;
+        x = newUrl.c_str();
+
+        while (*x) {
+            *workptr = *x;
+            x++;
+            workptr++;
+        }
+
+        if (workptr < endptr) {
+            *workptr = (char) NULL;
+            bufcp = workptr + 1;
+        }
+    }
 
 	/* how many path segments of the url are we keeping? */
 	if (cf.keep_segments > 0)

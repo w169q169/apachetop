@@ -32,6 +32,7 @@ map *um, /* urlmap */
     *rm, /* referrermap */
     *fm; /* filemap */
 
+queryFilter qf;
 struct config cf;
 
 /* inputs */
@@ -136,7 +137,7 @@ int main(int argc, char *argv[])
 #endif
 
 	/* process commandline {{{ */
-	while ((ch = getopt(argc, argv, "f:H:T:hqlrs:pd:")) != -1)
+	while ((ch = getopt(argc, argv, "f:H:T:hq:lrs:pd:")) != -1)
 	{
 		switch(ch)
 		{
@@ -169,10 +170,11 @@ int main(int argc, char *argv[])
 				}
 				break;
 
-			case 'q':
-				cf.keep_querystring = true;
+			case 'q':{
+			    qf.create(optarg);
+                cf.keep_querystring = true;
 				break;
-
+            }
 			case 'l':
 				cf.lowercase_urls = true;
 				break;
