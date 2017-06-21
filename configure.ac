@@ -1,6 +1,6 @@
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([apachetop],[0.17.4],[https://github.com/tessus/apachetop/issues])
+AC_INIT([apachetop],[0.17.5],[https://github.com/w169q169/apachetop/issues])
 
 AC_DEFUN([AC_CONFIG_NICE],
 [
@@ -60,7 +60,7 @@ AC_LANG([C++])
 AC_HEADER_STDC
 AC_CHECK_HEADERS([arpa/inet.h netdb.h netinet/in.h \
         string.h strings.h sys/socket.h time.h sys/time.h \
-        limits.h sys/param.h])
+        limits.h sys/param.h vector algorithm boost/algorithm/string.hpp])
 
 # Checks for typedefs, structures, and compiler characteristics.
 #AC_HEADER_STDBOOL # not in 2.53?

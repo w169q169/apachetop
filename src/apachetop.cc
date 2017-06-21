@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 #endif
 
 	/* process commandline {{{ */
-	while ((ch = getopt(argc, argv, "f:H:T:hq:lrs:pd:")) != -1)
+	while ((ch = getopt(argc, argv, "f:H:T:hqQ:lrs:pd:")) != -1)
 	{
 		switch(ch)
 		{
@@ -171,8 +171,11 @@ int main(int argc, char *argv[])
 				break;
 
 			case 'q':{
-			    qf.create(optarg);
                 cf.keep_querystring = true;
+				break;
+            }
+			case 'Q':{
+			    qf.create(optarg);
 				break;
             }
 			case 'l':
@@ -1050,6 +1053,7 @@ void usage(void) /* {{{ */
 	    "\n"
 	    "URL/host/referrer munging options:\n"
 	    "  -q          keep query strings [%s]\n"
+        "  -Q          filter query strings, such as 'actid,action'\n"
 	    "  -l          lowercase all URLs [%s]\n"
 	    "  -s num      keep num path segments of URL [all]\n"
 	    "  -p          preserve protocol at front of referrers [%s]\n"
